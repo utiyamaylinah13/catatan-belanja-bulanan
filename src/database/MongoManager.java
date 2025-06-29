@@ -9,5 +9,12 @@ package database;
  * @author tiya
  */
 public class MongoManager {
+
+    public MongoManager(String mongodblocalhost27017, String belanjaDB, String items) {
+    }
+
+    public void insert(String nama, Double harga, int jumlah) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

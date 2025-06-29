@@ -1,13 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package util;
+import java.util.*;
 
-/**
- *
- * @author tiya
- */
 public class Localutil {
-    
+    private static ResourceBundle bundle;
+
+    public static void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        bundle = ResourceBundle.getBundle("resources.messages", locale);
+    }
+
+    public static String get(String key) {
+        return bundle.getString(key);
+    }
 }
