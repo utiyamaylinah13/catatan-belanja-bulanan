@@ -4,8 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/view/Login.java</file>
-            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/model/item.java</file>
-            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/view/main.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/view/Registrasi.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/model/Item.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/internationalization/messages_id.properties</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/view/Dashboard.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/internationalization/messages_en.properties</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/MongoManager/MongoManager.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/util/Localutil.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/thread/AutoSaveThread.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/ConnectorDb/mongoDb.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/util/CryptoUtil.java</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/view/Keranjang.jpg</file>
+            <file>file:/E:/SEMESTER%204/PEMKOM%202/catatan-belanja-bulanan/src/util/HashUtil.java</file>
         </group>
     </open-files>
 </project-private>
