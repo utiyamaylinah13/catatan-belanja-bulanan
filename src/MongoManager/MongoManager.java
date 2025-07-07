@@ -1,77 +1,99 @@
-package mongomanager;
+package MongoManager;
 
-import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import ConnectorDb.mongoDb;
+import model.Belanjaitem;
 
 public class MongoManager {
 
-    private MongoClient mongoClient;
-    private MongoDatabase database;
-    private MongoCollection<Document> users;
+    private MongoDatabase db;
 
-    // Konstruktor koneksi MongoDB
-    public MongoManager(String uri, String dbName) {
-        MongoClient MongoClient1 = mongoClient;
-        MongoClient1 = MongoClients.create("mongodb://localhost:27017");
-        database = MongoClient1.getDatabase("belanjakuDb");
-        users = database.getCollection("users");
+    public MongoManager() {
+        db = mongoDb.getDatabase();
     }
 
-    // Fungsi login: cek username dan password (hashed)
-    public boolean login(String username, String hashedPassword) {
-        Document user = users.find(
-                Filters.and(
-                        Filters.eq("username", username),
-                        Filters.eq("password", hashedPassword)
-                )
-        ).first();
-        return false;
-
+    public MongoDatabase getDatabase() {
+        return db;
     }
 
-    // Ambil nama berdasarkan username
+    public boolean login(String username, String password) {
+        MongoCollection<Document> userCol = db.getCollection("users");
+        Document user = userCol.find(new Document("username", username).append("password", password)).first();
+        return user != null;
+    }
+
+    public boolean registerUserDocument(Document doc) {
+        MongoCollection<Document> userCol = db.getCollection("users");
+        Document existing = userCol.find(new Document("username", doc.getString("username"))).first();
+        if (existing != null) {
+            return false;
+        }
+        userCol.insertOne(doc);
+        return true;
+    }
+
     public String getNama(String username) {
-        Document user = users.find(Filters.eq("username", username)).first();
-        return user != null ? user.getString("nama") : null;
+        MongoCollection<Document> userCol = db.getCollection("users");
+        Document user = userCol.find(new Document("username", username)).first();
+        return user != null ? user.getString("fullname") : "";
     }
 
-    // Ambil fullname berdasarkan username (jika digunakan)
-    public String getFullName(String username) {
-        Document user = users.find(Filters.eq("username", username)).first();
-        return user != null ? user.getString("fullname") : null;
-    }
-
-    // Registrasi user (versi sederhana)
-    public boolean registerUser(String username, String hashedPassword, String nama) {
-        Document existing = users.find(Filters.eq("username", username)).first();
-        if (existing != null) {
-            return false; // Username sudah dipakai
+    // Method generik untuk insert dokumen
+    public <T> boolean insertItem(String collectionName, T item) {
+        try {
+            if (item instanceof Document document) {
+                db.getCollection(collectionName).insertOne(document);
+            } else if (item instanceof Belanjaitem) {
+                db.getCollection(collectionName).insertOne(((Belanjaitem<?>) item).toDocument());
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-
-        Document newUser = new Document("username", username)
-                .append("password", hashedPassword)
-                .append("nama", nama)
-                .append("fullname", nama); // default fullname = nama jika tidak dimasukkan terpisah
-
-        users.insertOne(newUser);
-        return true;
     }
 
-    // Registrasi user pakai dokumen (versi fleksibel)
-    public boolean registerUserDocument(Document userDoc) {
-        String username = userDoc.getString("username");
-        Document existing = users.find(Filters.eq("username", username)).first();
-        if (existing != null) {
-            return false; // Username sudah ada
+    // Method update yang diperbaiki
+    public boolean updateItem(String collectionName, String fieldName, Object fieldValue, Document updateData) {
+        try {
+            MongoCollection<Document> collection = db.getCollection(collectionName);
+            Document filter = new Document(fieldName, fieldValue);
+            UpdateResult result = collection.updateOne(filter, new Document("$set", updateData));
+            return result.getModifiedCount() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        users.insertOne(userDoc);
-        return true;
     }
 
-    // Tutup koneksi MongoDB
-    public void close() {
-        mongoClient.close();
+    public Document findItemByName(String NamaItem) {
+        try {
+            if (db == null) {
+                throw new Exception("Database not connected");
+            }
+
+            MongoCollection<Document> collection = db.getCollection("belanja");
+            if (collection == null) {
+                throw new Exception("Collection not found");
+            }
+
+            Document query = new Document("nameitem", NamaItem);
+            Document result = collection.find(query).first();
+
+            if (result == null) {
+                System.out.println("Item tidak ditemukan: " + NamaItem);
+            }
+            return result;
+        } catch (Exception e) {
+            System.err.println("Error dalam findItemByName: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public MongoCollection<Document> getCollection(String collectionName) {
+        return db.getCollection(collectionName);
     }
 }

@@ -1,10 +1,13 @@
 package view;
 
-import ConnectorDb.mongoDb;
-import com.sun.jdi.connect.spi.Connection;
+import MongoManager.MongoManager;
+import internationalization.configLanguange;
 import javax.swing.JOptionPane;
-import mongomanager.MongoManager;
-import view.Registrasi;
+import org.bson.Document;
+import util.HashUtil;
+import java.util.ResourceBundle;
+import java.util.Locale;
+
 
 /*
 
@@ -16,11 +19,11 @@ package view;
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form main
-     */
+    private ResourceBundle bundle = configLanguange.getInstance().getBundle();
+
     public Login() {
         initComponents();
+        setLanguage("inggris");
     }
 
     /**
@@ -32,17 +35,159 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        lblgambar = new javax.swing.JLabel();
+        lblRegistrasi = new javax.swing.JLabel();
+        lblUsername1 = new javax.swing.JLabel();
+        lblFullname = new javax.swing.JLabel();
+        lblPassword1 = new javax.swing.JLabel();
+        lblConfrimpass = new javax.swing.JLabel();
+        txtFullname = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
+        btnSubmit = new javax.swing.JButton();
+        txtPassword1 = new javax.swing.JPasswordField();
+        txtConfirmpass = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        txtusername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         btnDaftar = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
+        txtusername = new javax.swing.JTextField();
         lblBelanjaku = new javax.swing.JLabel();
         lblGambarLogin = new javax.swing.JLabel();
         selectLanguage = new javax.swing.JComboBox<>();
+
+        jPanel3.setBackground(new java.awt.Color(255, 204, 255));
+
+        lblgambar.setIcon(new javax.swing.ImageIcon("E:\\DOWNLOAD\\Keranjang-removebg-preview.png")); // NOI18N
+
+        lblRegistrasi.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lblRegistrasi.setText("Registrasi");
+
+        lblUsername1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        lblUsername1.setText("Username");
+
+        lblFullname.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        lblFullname.setText("Fullname");
+
+        lblPassword1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        lblPassword1.setText("Password");
+
+        lblConfrimpass.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        lblConfrimpass.setText("Confirm Password");
+
+        txtFullname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFullnameActionPerformed(evt);
+            }
+        });
+
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
+
+        btnSubmit.setBackground(new java.awt.Color(204, 204, 204));
+        btnSubmit.setText("Register");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+
+        txtPassword1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassword1ActionPerformed(evt);
+            }
+        });
+
+        txtConfirmpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConfirmpassActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblgambar, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblConfrimpass)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUsername1)
+                                    .addComponent(lblPassword1)
+                                    .addComponent(lblFullname))))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtConfirmpass)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPassword1))
+                        .addGap(25, 25, 25))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSubmit)))
+                .addGap(34, 34, 34))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblRegistrasi)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblgambar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFullname)
+                            .addComponent(txtFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUsername1)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPassword1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtConfirmpass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblConfrimpass))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSubmit)
+                .addGap(24, 24, 24))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -57,18 +202,6 @@ public class Login extends javax.swing.JFrame {
         lblPassword.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         lblPassword.setText("Password");
 
-        txtusername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtusernameActionPerformed(evt);
-            }
-        });
-
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
-
         btnLogin.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -78,10 +211,16 @@ public class Login extends javax.swing.JFrame {
         });
 
         btnDaftar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        btnDaftar.setText("Daftar");
+        btnDaftar.setText("Register");
         btnDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDaftarActionPerformed(evt);
+            }
+        });
+
+        txtusername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtusernameActionPerformed(evt);
             }
         });
 
@@ -91,34 +230,33 @@ public class Login extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblUsername)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblUsername)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnLogin)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDaftar))
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33))))
+                        .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLogin)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDaftar)))
+                .addGap(31, 31, 31))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsername))
+                    .addComponent(lblUsername)
+                    .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPassword))
+                    .addComponent(lblPassword)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
@@ -135,7 +273,7 @@ public class Login extends javax.swing.JFrame {
         lblGambarLogin.setMinimumSize(new java.awt.Dimension(150, 150));
         lblGambarLogin.setPreferredSize(new java.awt.Dimension(100, 100));
 
-        selectLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---pilih bahasa---", "Indonesia", "Jepang", "Korea", "Inggris" }));
+        selectLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---pilih bahasa---", "Indonesia", "Inggris" }));
         selectLanguage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectLanguageActionPerformed(evt);
@@ -150,13 +288,15 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblGambarLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblBelanjaku, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selectLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(selectLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +309,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBelanjaku)
                     .addComponent(selectLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -177,39 +317,17 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        String passwordChars = txtPassword.getText();
-        String password = new String(passwordChars).trim();
-
-        if (password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Password tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (password.length() < 6) {
-            JOptionPane.showMessageDialog(this, "Password minimal 6 karakter!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Password valid.", "Info", JOptionPane.INFORMATION_MESSAGE);
-            // Di sini kamu bisa tambahkan hash password atau simpan ke database
-        }
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed
-        String username = txtusername.getText().trim();
 
-        if (username.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Username tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Username dimasukkan: " + username, "Info", JOptionPane.INFORMATION_MESSAGE);
-            // Kamu bisa tambahkan logika validasi ke database di sini
-        }
     }//GEN-LAST:event_txtusernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtusername.getText().trim();
-        String passwordChars = txtPassword.getText();
-        String password = new String(passwordChars).trim();
+        String password = new String(txtPassword.getPassword()).trim();
 
-        // Validasi input
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username dan password tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
@@ -221,40 +339,33 @@ public class Login extends javax.swing.JFrame {
         }
 
         try {
-            // Hash password
-            String hashedpassword = util.HashUtil.hashSHA256(password);
+            String hashedPassword = HashUtil.hashSHA256(password);
 
-            // Koneksi ke MongoDB
-            MongoManager mongo = new MongoManager("mongodb://localhost:27017", "belanjaDb");
+            MongoManager mongo = new MongoManager();
 
-            if (mongo.login(username, hashedpassword)) {
-                // lanjut ke halaman utama
-            }
-
-            // Proses login
-            if (mongo.login(username, hashedpassword)) {
-                String nama = mongo.getNama(username);
-                JOptionPane.showMessageDialog(this, "Login berhasil. Selamat datang, " + nama + "!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
-
-                // TODO: lanjutkan ke halaman utama aplikasi
-                this.dispose(); // contoh: menutup form login
+            if (mongo.login(username, hashedPassword)) {
+                String fullname = mongo.getNama(username);
+                JOptionPane.showMessageDialog(this, "Login berhasil. Selamat datang, " + fullname + "!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                Dashboard dash = new Dashboard();
+                dash.setVisible(true);
+                dash.setUserLogin(fullname);
             } else {
                 JOptionPane.showMessageDialog(this, "Login gagal! Username atau password salah.", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
 
-            mongo.close();
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
-        // Panggil form registrasi
-        new Registrasi().setVisible(true);
-
-        // Tutup form login saat ini
-        this.dispose(); // atau this.setVisible(false);
+        jDialog1.pack();
+        jDialog1.setLocationRelativeTo(this);
+        jDialog1.setModal(true);
+        jDialog1.setVisible(true);
     }//GEN-LAST:event_btnDaftarActionPerformed
 
     private void selectLanguageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectLanguageActionPerformed
@@ -263,6 +374,92 @@ public class Login extends javax.swing.JFrame {
             setLanguage(selected);
         }
     }//GEN-LAST:event_selectLanguageActionPerformed
+
+    private void txtFullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullnameActionPerformed
+        try {
+            MongoManager mongo = new MongoManager();
+            String username = null;
+            String fullname = mongo.getNama(username); // pastikan getNama ada di MongoManager
+            lblRegistrasi.setText("Selamat datang, " + fullname + "!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal mengambil nama lengkap: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtFullnameActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        String username = txtUsername.getText().trim();
+
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else {
+            txtPassword.requestFocus(); // otomatis pindah ke password
+        }
+    }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        String fullname = txtFullname.getText().trim();
+        String username = txtUsername.getText().trim();
+        String password = new String(txtPassword1.getPassword()).trim();
+        String confirmPassword = new String(txtConfirmpass.getPassword()).trim();
+
+        if (fullname.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(this, bundle.getString("msg.required"));
+            return;
+        }
+
+        if (password.length() < 6) {
+            JOptionPane.showMessageDialog(this, bundle.getString("msg.password"));
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "Konfirmasi password tidak cocok!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            String hashedPassword = HashUtil.hashSHA256(password);
+
+            Document userDoc = new Document("fullname", fullname)
+                    .append("username", username)
+                    .append("password", hashedPassword);
+
+            MongoManager mongo = new MongoManager();
+
+            if (mongo.registerUserDocument(userDoc)) {
+                JOptionPane.showMessageDialog(this, "Registrasi berhasil! Silakan login.", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+
+                jDialog1.setVisible(false); // Tutup form registrasi
+
+                // ✅ Fokus kembali ke form login
+                txtusername.setText(username);  // Auto-fill username dari form registrasi
+                txtPassword.setText("");        // Kosongkan password
+                txtusername.requestFocus();     // Fokus kursor ke kolom username
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Username sudah digunakan!", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void txtPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassword1ActionPerformed
+        txtConfirmpass.requestFocus();
+    }//GEN-LAST:event_txtPassword1ActionPerformed
+
+    private void txtConfirmpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmpassActionPerformed
+        String password = new String(txtPassword1.getPassword()).trim();
+        String confirmPassword = new String(txtConfirmpass.getPassword()).trim();
+
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "Konfirmasi password tidak cocok!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            txtConfirmpass.requestFocus();
+        } else {
+            btnSubmit.doClick(); // Jika cocok, jalankan registrasi
+        }
+    }//GEN-LAST:event_txtConfirmpassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,6 +491,7 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }
@@ -303,18 +501,46 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDaftar;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBelanjaku;
+    private javax.swing.JLabel lblConfrimpass;
+    private javax.swing.JLabel lblFullname;
     private javax.swing.JLabel lblGambarLogin;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPassword1;
+    private javax.swing.JLabel lblRegistrasi;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblUsername1;
+    private javax.swing.JLabel lblgambar;
     private javax.swing.JComboBox<String> selectLanguage;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtConfirmpass;
+    private javax.swing.JTextField txtFullname;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtPassword1;
+    private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
 
-    private void setLanguage(String selected) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void setLanguage(String language) {
+        configLanguange.getInstance().setLanguange(language);
+        bundle = configLanguange.getInstance().getBundle();
+
+        lblBelanjaku.setText(bundle.getString("login.title"));
+        lblRegistrasi.setText(bundle.getString("register.title"));
+        lblUsername.setText(bundle.getString("label.username"));
+        lblUsername1.setText(bundle.getString("label.username"));
+        lblPassword.setText(bundle.getString("label.password"));
+        lblPassword1.setText(bundle.getString("label.password"));
+        lblConfrimpass.setText(bundle.getString("label.confirmpass"));
+        lblFullname.setText(bundle.getString("label.fullname"));
+        btnLogin.setText(bundle.getString("button.login"));
+        btnDaftar.setText(bundle.getString("button.daftar"));
+        btnSubmit.setText(bundle.getString("button.daftar"));
+        
+        
     }
 }
